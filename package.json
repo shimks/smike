@@ -1,0 +1,15 @@
+{
+  "name": "smartbike",
+  "version": "1.0.0",
+  "description": "smart bike",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
