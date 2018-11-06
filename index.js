@@ -19,6 +19,18 @@ app.get('/:entryNumber', (req, res) => {
             ]
         }
     );
+    dataRepository.push(
+        {
+            date: 'some date wow',
+            waypoints: [
+                {lat: '42.5309916298853', long: '13.3846220493377'}, 
+                {lat: '40.1120423728813', long: '10.8340740740811'}
+            ], 
+            speed: [
+                80, 80
+            ]
+        }
+    );
     const entryNumber = req.params.entryNumber;
     console.log(entryNumber);
     console.log(dataRepository[entryNumber]);
