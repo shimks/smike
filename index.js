@@ -2,34 +2,49 @@ const express = require('express')
 const cors = require('cors');
 
 const app = express();
+const dataRepository = [];
+// buildFakeRepository(7);
 
 app.use(cors({credentials: true, origin: true}));
 app.get('/:entryNumber', (req, res) => {
-    const dataRepository = [];
-    dataRepository.push({
-        date: 'Oct 11, 2018',
-        waypoints: [
-            {lat: 1.11, long: 12.34},
-            {lat: 123.45, long: 111.1111}
-        ],
-        speed: [
-            13, 14
-        ]
-    });
-    dataRepository.push({
-        date: 'Oct 12, 2018',
-        waypoints: [
-            {lat: 100, long: 110},
-            {lat: 100.45, long: 111.1321}
-        ],
-        speed: [
-            34, 23
-        ]
-    });
+    dataRepository.push([
+        {
+            date: new Date(),
+            waypoints: [
+                {lat: '52.5309916298853', long: '13.3846220493377'}, 
+                {lat: '50.1120423728813', long: '8.68340740740811'}
+            ], 
+            speed: [
+                80, 80
+            ]
+        }
+    ])
     const entryNumber = req.params.entryNumber;
     res.send(dataRepository[entryNumber]);
 });
 
 app.listen(8080, () => {
-    console.log('app is running');
+    console.log('app is running at localhost:8080');
 })
+
+function buildFakeRepository(number) {
+    for (let i = 0; i < number; i++) {
+        dataRepository.push({
+            date: new Date(),
+            waypoints: [
+                {lat: Math.round(Math.random() * 10000) / 100, long: Math.round(Math.random() * 10000) / 100},
+                {lat: Math.round(Math.random() * 10000) / 100, long: Math.round(Math.random() * 10000) / 100},
+                {lat: Math.round(Math.random() * 10000) / 100, long: Math.round(Math.random() * 10000) / 100},
+                {lat: Math.round(Math.random() * 10000) / 100, long: Math.round(Math.random() * 10000) / 100},
+                {lat: Math.round(Math.random() * 10000) / 100, long: Math.round(Math.random() * 10000) / 100}
+            ],
+            speed: [
+                Math.round(Math.random() * 100),
+                Math.round(Math.random() * 100),
+                Math.round(Math.random() * 100),
+                Math.round(Math.random() * 100),
+                Math.round(Math.random() * 100)
+            ]
+        })
+    }
+}
