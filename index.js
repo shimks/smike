@@ -7,7 +7,7 @@ const dataRepository = [];
 
 app.use(cors({credentials: true, origin: true}));
 app.get('/:entryNumber', (req, res) => {
-    dataRepository.push([
+    dataRepository.push(
         {
             date: new Date(),
             waypoints: [
@@ -18,8 +18,10 @@ app.get('/:entryNumber', (req, res) => {
                 80, 80
             ]
         }
-    ])
+    );
     const entryNumber = req.params.entryNumber;
+    console.log(entryNumber);
+    console.log(dataRepository[entryNumber]);
     res.send(dataRepository[entryNumber]);
 });
 
