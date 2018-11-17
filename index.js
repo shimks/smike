@@ -4,10 +4,9 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const fs = require('fs');
 
 const app = express();
-const dataRepository = require('./db.json');
+const dataRepository = [];
 
 app.use(cors({ credentials: true, origin: true }));
 app.use(bodyParser.json());
@@ -17,9 +16,11 @@ app.post('/', (req, res) => {
   if (dataRepository.length === 0) {
     body.isFirst = true;
   }
-  dataRepository.unshift(body);
-  fs.writeFileSync('./db.json', JSON.stringify(dataRepository));
+  dataRepository.push(body);
   res.send(body);
+});
+app.get('/', (req, res) => {
+  res.send(dataRepository);
 });
 app.get('/:entryNumber', (req, res) => {
   const entryNumber = req.params.entryNumber;
