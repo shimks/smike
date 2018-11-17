@@ -28,6 +28,12 @@ app.get('/:entryNumber', (req, res) => {
   //   console.log(entry);
   res.send(entry);
 });
+app.delete('/', (req, res) => {
+  while (dataRepository.length > 0) {
+    dataRepository.pop();
+  }
+  res.send(true);
+});
 
 app.listen(8080, () => {
   console.log('app is running at localhost:8080');
